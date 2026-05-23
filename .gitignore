@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+outputs/generated_plan.md
+outputs/generated_review.md
