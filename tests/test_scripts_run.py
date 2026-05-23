@@ -35,3 +35,17 @@ def test_generate_review_script_runs_and_generates_output() -> None:
     assert output.exists(), "generated_review.md was not created"
     content = output.read_text(encoding="utf-8")
     assert "# Generated Review" in content
+
+
+def test_configure_branch_protection_dry_run() -> None:
+    script_path = ROOT / "scripts" / "configure_branch_protection.py"
+    result = subprocess.run(
+        [sys.executable, str(script_path), "--dry-run"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0
+    assert "test (3.11)" in result.stdout
+    assert "test (3.12)" in result.stdout

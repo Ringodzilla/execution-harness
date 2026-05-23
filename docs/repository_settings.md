@@ -43,3 +43,17 @@ Remote:
 
 - GitHub Actions workflow: `.github/workflows/pytest.yml`
 - Branch protection should require both matrix jobs to pass before merge.
+
+## Applying via API
+
+Use a token with repository Administration write permission:
+
+```bash
+GH_TOKEN=... python3 scripts/configure_branch_protection.py
+```
+
+Preview the payload without making changes:
+
+```bash
+python3 scripts/configure_branch_protection.py --dry-run
+```

@@ -142,6 +142,7 @@ python3 -m pytest -q
 - すべてのテンプレートを「次の一歩」へ収束
 - GitHub Actions とローカル `pytest` を通過
 - GitHub側の保護設定は `docs/repository_settings.md` に記録
+- Branch protection は `scripts/configure_branch_protection.py` で再現可能
 
 ## 12. examples の説明
 
