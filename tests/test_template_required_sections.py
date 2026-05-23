@@ -51,6 +51,24 @@ REQUIRED_SECTIONS = {
         "## 明日やること",
         "## 次の一歩",
     ],
+    "habit_tracker.md": [
+        "## 習慣一覧",
+        "## 進捗記録",
+        "## 学習メモ",
+        "## 次の一歩",
+    ],
+    "kpi_dashboard.md": [
+        "## KPI一覧",
+        "## インサイト",
+        "## 改善アクション",
+        "## 次の一歩",
+    ],
+    "action_item.md": [
+        "## 実行内容",
+        "## 完了条件",
+        "## 想定障害と回避策",
+        "## 次の一歩",
+    ],
     "kpt_review.md": [
         "## Keep",
         "## Problem",
@@ -131,3 +149,22 @@ def test_templates_have_required_sections() -> None:
 
         missing = [header for header in required_headers if header not in content]
         assert not missing, f"{template_name} is missing required sections: {missing}"
+
+        positions = [content.index(header) for header in required_headers]
+        assert positions == sorted(positions), f"{template_name} required sections are out of order"
+
+
+def test_required_section_map_covers_all_templates() -> None:
+    template_names = {path.name for path in TEMPLATES_DIR.glob("*.md")}
+    mapped_names = set(REQUIRED_SECTIONS)
+    assert template_names == mapped_names, (
+        "Template validator coverage mismatch. "
+        f"Missing from validator: {sorted(template_names - mapped_names)}. "
+        f"Unknown in validator: {sorted(mapped_names - template_names)}."
+    )
+
+
+def test_all_templates_drive_to_next_step() -> None:
+    for path in sorted(TEMPLATES_DIR.glob("*.md")):
+        content = path.read_text(encoding="utf-8")
+        assert "## 次の一歩" in content, f"{path.name} must include ## 次の一歩"

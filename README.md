@@ -99,13 +99,16 @@ python scripts/generate_review.py
 ### テスト
 
 ```bash
+python3 -m pip install -r requirements-dev.txt
 python3 -m pytest -q
 ```
 
 ### CI（GitHub Actions）
 
 - Push / Pull Request（`main` 向け）で自動的に `python3 -m pytest -q` を実行
+- Python `3.11` / `3.12` の両方で検証
 - 定義ファイル: `.github/workflows/pytest.yml`
+- 依存定義: `requirements-dev.txt`
 
 ## 9. 実行コマンド
 
@@ -117,10 +120,11 @@ cp templates/monthly_plan.md plans/monthly/2026-01.md
 cp templates/weekly_plan.md plans/weekly/2026-W01.md
 python scripts/generate_plan.py
 python scripts/generate_review.py
+python3 -m pip install -r requirements-dev.txt
 python3 -m pytest -q
 ```
 
-## 10.5 KPT改善バックログ運用
+## 10. KPT改善バックログ運用
 
 週次で詰まりを改善へ接続するため、`dashboards/improvement_backlog.md` を運用します。
 
@@ -129,7 +133,16 @@ python3 -m pytest -q
 3. `Priority=High` を翌週 `plans/weekly/` の最重要タスクへ反映
 4. 実行結果を `Result` と `Next Step` に記録
 
-## 11. examples の説明
+## 11. 品質バー
+
+運用品質の基準は `docs/quality_bar.md` にまとめています。
+
+- テンプレート必須セクションを維持
+- プロンプトの8項目構造を維持
+- すべてのテンプレートを「次の一歩」へ収束
+- GitHub Actions とローカル `pytest` を通過
+
+## 12. examples の説明
 
 `examples/` には、以下テーマの実例を収録しています。
 
@@ -144,7 +157,7 @@ python3 -m pytest -q
 - `sample_companion_checkin.md`: 並走チェックイン例
 - `sample_stuck_recovery.md`: 再始動テンプレート例
 
-## 12. 将来的な拡張案
+## 13. 将来的な拡張案
 
 1. 指標の時系列ダッシュボード自動更新
 2. KPT / YWT から改善提案を自動抽出
@@ -152,7 +165,7 @@ python3 -m pytest -q
 4. 再始動支援（stuck recovery）の優先度推奨
 5. 週次計画から日次タスク候補を自動生成
 
-## 13. 次の一歩
+## 14. 次の一歩
 
 1. `templates/strategy_to_execution.md` を使って戦略を年次計画へ変換
 2. `plans/yearly/` に当年計画を1本作成
