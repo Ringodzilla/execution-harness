@@ -17,6 +17,7 @@ REQUIRED_DOCS = [
     "thinking_harness_integration.md",
     "companion_layer.md",
     "quality_bar.md",
+    "repository_settings.md",
 ]
 
 REQUIRED_EXAMPLES = [

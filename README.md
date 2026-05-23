@@ -141,6 +141,7 @@ python3 -m pytest -q
 - プロンプトの8項目構造を維持
 - すべてのテンプレートを「次の一歩」へ収束
 - GitHub Actions とローカル `pytest` を通過
+- GitHub側の保護設定は `docs/repository_settings.md` に記録
 
 ## 12. examples の説明
 
